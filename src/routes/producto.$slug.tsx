@@ -41,11 +41,11 @@ export const Route = createFileRoute("/producto/$slug")({
 function ProductoPage() {
   const { producto } = Route.useLoaderData();
 
-  const [color, setColor] = useState(coloresVinil[0]);
-  const [fuente, setFuente] = useState(tiposLetra[0]);
-  const [tamano, setTamano] = useState(tamanosDiseno[1]);
+  const [color, setColor] = useState(coloresVinil[0]!);
+  const [fuente, setFuente] = useState(tiposLetra[0]!);
+  const [tamano, setTamano] = useState(tamanosDiseno[1]!);
   const [texto, setTexto] = useState("Mi Nombre");
-  const [talla, setTalla] = useState(tallas[1]);
+  const [talla, setTalla] = useState(tallas[1]!);
   const [agregado, setAgregado] = useState(false);
 
   const total = useMemo(() => producto.precio + tamano.extra, [producto.precio, tamano.extra]);
@@ -275,7 +275,7 @@ function Bloque({
   children,
 }: {
   titulo: string;
-  hint?: string;
+  hint?: string | undefined;
   children: React.ReactNode;
 }) {
   return (
