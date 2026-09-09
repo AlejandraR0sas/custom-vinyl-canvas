@@ -10,12 +10,18 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as EtiquetasEscolaresRouteImport } from './routes/etiquetas-escolares'
 import { Route as CategoriaSlugRouteImport } from './routes/categoria.$slug'
 import { Route as ProductoSlugRouteImport } from './routes/producto.$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EtiquetasEscolaresRoute = EtiquetasEscolaresRouteImport.update({
+  id: '/etiquetas-escolares',
+  path: '/etiquetas-escolares',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CategoriaSlugRoute = CategoriaSlugRouteImport.update({
@@ -31,30 +37,40 @@ const ProductoSlugRoute = ProductoSlugRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/etiquetas-escolares': typeof EtiquetasEscolaresRoute
   '/categoria/$slug': typeof CategoriaSlugRoute
   '/producto/$slug': typeof ProductoSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/etiquetas-escolares': typeof EtiquetasEscolaresRoute
   '/categoria/$slug': typeof CategoriaSlugRoute
   '/producto/$slug': typeof ProductoSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/etiquetas-escolares': typeof EtiquetasEscolaresRoute
   '/categoria/$slug': typeof CategoriaSlugRoute
   '/producto/$slug': typeof ProductoSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/categoria/$slug' | '/producto/$slug'
+  fullPaths:
+    '/' | '/etiquetas-escolares' | '/categoria/$slug' | '/producto/$slug'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/categoria/$slug' | '/producto/$slug'
-  id: '__root__' | '/' | '/categoria/$slug' | '/producto/$slug'
+  to: '/' | '/etiquetas-escolares' | '/categoria/$slug' | '/producto/$slug'
+  id:
+    | '__root__'
+    | '/'
+    | '/etiquetas-escolares'
+    | '/categoria/$slug'
+    | '/producto/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  EtiquetasEscolaresRoute: typeof EtiquetasEscolaresRoute
   CategoriaSlugRoute: typeof CategoriaSlugRoute
   ProductoSlugRoute: typeof ProductoSlugRoute
 }
@@ -66,6 +82,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/etiquetas-escolares': {
+      id: '/etiquetas-escolares'
+      path: '/etiquetas-escolares'
+      fullPath: '/etiquetas-escolares'
+      preLoaderRoute: typeof EtiquetasEscolaresRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/categoria/$slug': {
@@ -87,6 +110,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  EtiquetasEscolaresRoute: EtiquetasEscolaresRoute,
   CategoriaSlugRoute: CategoriaSlugRoute,
   ProductoSlugRoute: ProductoSlugRoute,
 }
