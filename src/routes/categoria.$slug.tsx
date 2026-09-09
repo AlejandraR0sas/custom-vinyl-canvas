@@ -1,6 +1,7 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { ArrowLeft, Sparkles } from "lucide-react";
+import { ArrowLeft, ArrowRight, Sparkles } from "lucide-react";
 import { getCategoria } from "@/data/categorias";
+import { productos } from "@/data/productos";
 
 export const Route = createFileRoute("/categoria/$slug")({
   loader: ({ params }) => {
