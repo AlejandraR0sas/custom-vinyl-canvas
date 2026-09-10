@@ -10,8 +10,12 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as CarritoRouteImport } from './routes/carrito'
 import { Route as EtiquetasEscolaresRouteImport } from './routes/etiquetas-escolares'
+import { Route as PedidoAMedidaRouteImport } from './routes/pedido-a-medida'
+import { Route as VinilDecorativoRouteImport } from './routes/vinil-decorativo'
 import { Route as CategoriaSlugRouteImport } from './routes/categoria.$slug'
+import { Route as PedidoIdRouteImport } from './routes/pedido.$id'
 import { Route as ProductoSlugRouteImport } from './routes/producto.$slug'
 
 const IndexRoute = IndexRouteImport.update({
@@ -19,14 +23,34 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CarritoRoute = CarritoRouteImport.update({
+  id: '/carrito',
+  path: '/carrito',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const EtiquetasEscolaresRoute = EtiquetasEscolaresRouteImport.update({
   id: '/etiquetas-escolares',
   path: '/etiquetas-escolares',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PedidoAMedidaRoute = PedidoAMedidaRouteImport.update({
+  id: '/pedido-a-medida',
+  path: '/pedido-a-medida',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const VinilDecorativoRoute = VinilDecorativoRouteImport.update({
+  id: '/vinil-decorativo',
+  path: '/vinil-decorativo',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CategoriaSlugRoute = CategoriaSlugRouteImport.update({
   id: '/categoria/$slug',
   path: '/categoria/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PedidoIdRoute = PedidoIdRouteImport.update({
+  id: '/pedido/$id',
+  path: '/pedido/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ProductoSlugRoute = ProductoSlugRouteImport.update({
@@ -37,41 +61,76 @@ const ProductoSlugRoute = ProductoSlugRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/carrito': typeof CarritoRoute
   '/etiquetas-escolares': typeof EtiquetasEscolaresRoute
+  '/pedido-a-medida': typeof PedidoAMedidaRoute
+  '/vinil-decorativo': typeof VinilDecorativoRoute
   '/categoria/$slug': typeof CategoriaSlugRoute
+  '/pedido/$id': typeof PedidoIdRoute
   '/producto/$slug': typeof ProductoSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/carrito': typeof CarritoRoute
   '/etiquetas-escolares': typeof EtiquetasEscolaresRoute
+  '/pedido-a-medida': typeof PedidoAMedidaRoute
+  '/vinil-decorativo': typeof VinilDecorativoRoute
   '/categoria/$slug': typeof CategoriaSlugRoute
+  '/pedido/$id': typeof PedidoIdRoute
   '/producto/$slug': typeof ProductoSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/carrito': typeof CarritoRoute
   '/etiquetas-escolares': typeof EtiquetasEscolaresRoute
+  '/pedido-a-medida': typeof PedidoAMedidaRoute
+  '/vinil-decorativo': typeof VinilDecorativoRoute
   '/categoria/$slug': typeof CategoriaSlugRoute
+  '/pedido/$id': typeof PedidoIdRoute
   '/producto/$slug': typeof ProductoSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    '/' | '/etiquetas-escolares' | '/categoria/$slug' | '/producto/$slug'
+    | '/'
+    | '/carrito'
+    | '/etiquetas-escolares'
+    | '/pedido-a-medida'
+    | '/vinil-decorativo'
+    | '/categoria/$slug'
+    | '/pedido/$id'
+    | '/producto/$slug'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/etiquetas-escolares' | '/categoria/$slug' | '/producto/$slug'
+  to:
+    | '/'
+    | '/carrito'
+    | '/etiquetas-escolares'
+    | '/pedido-a-medida'
+    | '/vinil-decorativo'
+    | '/categoria/$slug'
+    | '/pedido/$id'
+    | '/producto/$slug'
   id:
     | '__root__'
     | '/'
+    | '/carrito'
     | '/etiquetas-escolares'
+    | '/pedido-a-medida'
+    | '/vinil-decorativo'
     | '/categoria/$slug'
+    | '/pedido/$id'
     | '/producto/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CarritoRoute: typeof CarritoRoute
   EtiquetasEscolaresRoute: typeof EtiquetasEscolaresRoute
+  PedidoAMedidaRoute: typeof PedidoAMedidaRoute
+  VinilDecorativoRoute: typeof VinilDecorativoRoute
   CategoriaSlugRoute: typeof CategoriaSlugRoute
+  PedidoIdRoute: typeof PedidoIdRoute
   ProductoSlugRoute: typeof ProductoSlugRoute
 }
 
@@ -84,6 +143,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/carrito': {
+      id: '/carrito'
+      path: '/carrito'
+      fullPath: '/carrito'
+      preLoaderRoute: typeof CarritoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/etiquetas-escolares': {
       id: '/etiquetas-escolares'
       path: '/etiquetas-escolares'
@@ -91,11 +157,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EtiquetasEscolaresRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/pedido-a-medida': {
+      id: '/pedido-a-medida'
+      path: '/pedido-a-medida'
+      fullPath: '/pedido-a-medida'
+      preLoaderRoute: typeof PedidoAMedidaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/vinil-decorativo': {
+      id: '/vinil-decorativo'
+      path: '/vinil-decorativo'
+      fullPath: '/vinil-decorativo'
+      preLoaderRoute: typeof VinilDecorativoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/categoria/$slug': {
       id: '/categoria/$slug'
       path: '/categoria/$slug'
       fullPath: '/categoria/$slug'
       preLoaderRoute: typeof CategoriaSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pedido/$id': {
+      id: '/pedido/$id'
+      path: '/pedido/$id'
+      fullPath: '/pedido/$id'
+      preLoaderRoute: typeof PedidoIdRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/producto/$slug': {
@@ -110,8 +197,12 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CarritoRoute: CarritoRoute,
   EtiquetasEscolaresRoute: EtiquetasEscolaresRoute,
+  PedidoAMedidaRoute: PedidoAMedidaRoute,
+  VinilDecorativoRoute: VinilDecorativoRoute,
   CategoriaSlugRoute: CategoriaSlugRoute,
+  PedidoIdRoute: PedidoIdRoute,
   ProductoSlugRoute: ProductoSlugRoute,
 }
 export const routeTree = rootRouteImport
